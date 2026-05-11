@@ -1,25 +1,37 @@
-import readline from 'node:readline/promises';
-import { stdin as input, stdout as output } from 'node:process';
+import readlineSync from 'readline-sync';
 
-export async function preguntar(pregunta: string): Promise<string> {
-  const rl = readline.createInterface({ input, output });
-  const respuesta = await rl.question(pregunta);
-  rl.close();
-  return respuesta.trim();
+/**
+ * Le hace una pregunta al usuario y devuelve su respuesta como texto.
+ *
+ * @param pregunta - El texto que se muestra al usuario.
+ * @returns La respuesta ingresada por el usuario (sin espacios al inicio o al final).
+ * @example
+ * const nombre = preguntar('¿Cómo te llamás? ');
+ * console.log(`¡Hola, ${nombre}!`);
+ */
+export function preguntar(pregunta: string): string {
+  return readlineSync.question(pregunta).trim();
 }
 
-export async function preguntarNumero(pregunta: string): Promise<number> {
+/**
+ * Le hace una pregunta al usuario y devuelve su respuesta como número.
+ * Si el usuario ingresa algo que no es un número, vuelve a preguntar
+ * hasta recibir un valor válido.
+ *
+ * @param pregunta - El texto que se muestra al usuario.
+ * @returns El número ingresado por el usuario.
+ * @example
+ * const edad = preguntarNumero('¿Cuántos años tenés? ');
+ * console.log(`Tenés ${edad} años.`);
+ */
+export function preguntarNumero(pregunta: string): number {
   let numero: number;
   do {
-    const texto = await preguntar(pregunta);
+    const texto = preguntar(pregunta);
     numero = Number(texto);
     if (isNaN(numero)) {
-      escribir('Por favor ingresá un número válido.');
+      console.log('Por favor ingresá un número válido.');
     }
   } while (isNaN(numero));
   return numero;
-}
-
-export function escribir(mensaje: string): void {
-  console.log(mensaje);
 }

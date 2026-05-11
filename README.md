@@ -77,16 +77,15 @@ Para la mayoría de los ejercicios vas a usar `npm start`. Usá `npm run dev` cu
 |---|---|
 | `preguntar('texto')` | Le pregunta algo al usuario y devuelve la respuesta como texto |
 | `preguntarNumero('texto')` | Le pregunta un número al usuario (vuelve a preguntar si no es un número válido) |
-| `escribir('texto')` | Muestra un mensaje en la consola |
 
 **Ejemplo de uso:**
 
 ```ts
-import { preguntar, preguntarNumero, escribir } from './lib/consola.ts';
+import { preguntar, preguntarNumero } from './lib/consola.ts';
 
-const nombre = await preguntar('¿Tu nombre? ');
-const edad = await preguntarNumero('¿Tu edad? ');
-escribir(`Hola ${nombre}, tenés ${edad} años.`);
+const nombre = preguntar('¿Tu nombre? ');
+const edad = preguntarNumero('¿Tu edad? ');
+console.log(`Hola ${nombre}, tenés ${edad} años.`);
 ```
 
 ---
