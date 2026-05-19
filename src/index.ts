@@ -2,5 +2,5 @@
 import { preguntar } from './lib/consola.ts';
 
 // Acá empieza tu programa — podés modificar estas líneas
-const nombre = preguntar('¿Cómo te llamás? ');
+let nombre = preguntar('¿Cómo te llamás? ');
 console.log(`¡Hola, ${nombre}!`);
